@@ -1,13 +1,16 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config({ path: './.env' });
+import express from 'express';
+import dotenv from 'dotenv';
+
+import CreateCheckoutSession from './api/Checkout.js';
+
+dotenv.config();
 
 const app = express();
-const port = 8080;
 
-app.use(express.json());
-app.use(cors({ origin: true }));
+app.get('/', (req, res) => res.send('API is running...'));
 
-app.get('/', (req, res) => res.send('Hello World'));
+app.post('/create-session-checkout', CreateCheckoutSession);
 
-app.listen(port, () => console.log('server listing on port', port));
+const PORT = 8080;
+
+app.listen(PORT, console.log('server listing on port', PORT));
