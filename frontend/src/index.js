@@ -7,11 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import ProductsContextProvider from './Context/ProductsContext';
 import CartContextProvider from './Context/CartContext';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
+
 ReactDOM.render(
   <React.StrictMode>
     <ProductsContextProvider>
       <CartContextProvider>
-        <App />
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
       </CartContextProvider>
     </ProductsContextProvider>
   </React.StrictMode>,

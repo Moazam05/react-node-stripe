@@ -13,7 +13,7 @@ const CreateCheckoutSession = async (req, res) => {
   let session;
 
   try {
-    session = await stripeAPI.checkout.session.create({
+    session = await stripeAPI.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       line_items,
@@ -22,7 +22,7 @@ const CreateCheckoutSession = async (req, res) => {
       cancel_url: `${domainURL}/canceled`,
       shipping_address_collection: { allowed_countries: ['GB', 'US'] },
     });
-    res.status(200).json({ sessionID: session.id });
+    res.status(200).json({ sessionId: session.id });
   } catch (error) {
     console.log(error);
     res

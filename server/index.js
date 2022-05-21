@@ -11,6 +11,6 @@ app.get('/', (req, res) => res.send('API is running...'));
 
 app.post('/create-session-checkout', CreateCheckoutSession);
 
-const PORT = 8080;
+const PORT = 5000;
 
 app.listen(PORT, console.log('server listing on port', PORT));
